@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The 1-Hour Content Machine — Entre_Steph</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:    #080808;
+      --red:      #C8230F;
+      --red-dark: #A01B0B;
+      --gold:     #C9A84C;
+      --white:    #FFFFFF;
+      --gray:     #1A1A1A;
+      --gray-lt:  #242424;
+      --muted:    #888888;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .nav { max-width: 680px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E1E1E; }
+    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .nav-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); background: rgba(200,35,15,0.12); border: 1px solid rgba(200,35,15,0.3); padding: 4px 10px; border-radius: 100px; }
+
+    /* HERO */
+    .hero { max-width: 680px; margin: 0 auto; padding: 60px 24px 48px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid var(--gold); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(32px, 9vw, 56px); font-weight: 900; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .hero h1 .red { color: var(--red); }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-sub { font-size: clamp(15px, 4vw, 18px); color: #AAAAAA; line-height: 1.7; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .hero-sub strong { color: var(--white); font-weight: 600; }
+
+    /* PRICE */
+    .price-hero { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-bottom: 8px; }
+    .price-hero .sup { font-size: clamp(22px, 5vw, 32px); font-weight: 900; color: var(--gold); align-self: flex-start; margin-top: 8px; }
+    .price-hero .amount { font-size: clamp(52px, 13vw, 76px); font-weight: 900; color: var(--gold); letter-spacing: -0.03em; line-height: 1; }
+    .price-note { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+
+    /* BUTTONS */
+    .btn-primary { display: inline-block; background: var(--red); color: var(--white); font-size: 17px; font-weight: 800; padding: 18px 40px; border-radius: 8px; text-decoration: none; transition: background 0.18s, transform 0.12s; width: 100%; max-width: 420px; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .cta-stack { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .cta-note { font-size: 12px; color: var(--muted); }
+
+    /* DIVIDER */
+    .divider { max-width: 680px; margin: 0 auto; border: none; border-top: 1px solid #1E1E1E; }
+
+    /* SECTIONS */
+    .section { max-width: 680px; margin: 0 auto; padding: 52px 24px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .section h2 { font-size: clamp(22px, 6vw, 34px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 32px; }
+    .section h2 .gold { color: var(--gold); }
+
+    /* WHAT'S INSIDE LIST */
+    .inside-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .inside-item { display: flex; align-items: flex-start; gap: 14px; background: #111; border: 1px solid #222; border-radius: 10px; padding: 16px 18px; }
+    .inside-num { font-size: 11px; font-weight: 800; color: var(--gold); background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); border-radius: 4px; padding: 3px 8px; flex-shrink: 0; letter-spacing: 0.06em; margin-top: 1px; }
+    .inside-text h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .inside-text p { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* FOR SECTION */
+    .for-list { display: flex; flex-direction: column; gap: 10px; }
+    .for-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #CCC; line-height: 1.55; }
+    .for-item::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(201,168,76,0.1); border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* WHAT YOU GET STATS */
+    .stat-row { display: flex; gap: 12px; margin-bottom: 36px; }
+    .stat-card { flex: 1; background: #111; border: 1px solid #222; border-radius: 10px; padding: 20px 16px; text-align: center; }
+    .stat-num { font-size: 36px; font-weight: 900; color: var(--gold); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.4; }
+
+    /* PRICE BLOCK */
+    .price-block { background: #111; border: 1px solid #222; border-radius: 16px; padding: 40px 28px; text-align: center; }
+    .price-label { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .price-big { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-bottom: 6px; }
+    .price-big .sup { font-size: 26px; font-weight: 900; color: var(--gold); align-self: flex-start; margin-top: 8px; }
+    .price-big .amount { font-size: 68px; font-weight: 900; color: var(--gold); letter-spacing: -0.03em; line-height: 1; }
+    .price-per { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .price-includes { list-style: none; text-align: left; margin: 0 auto 32px; max-width: 320px; display: flex; flex-direction: column; gap: 11px; }
+    .price-includes li { font-size: 13.5px; color: var(--white); display: flex; align-items: center; gap: 10px; }
+    .price-includes li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(201,168,76,0.1); border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 11px; font-weight: 700; flex-shrink: 0; }
+
+    /* FOOTER */
+    .footer { max-width: 680px; margin: 0 auto; padding: 32px 24px; text-align: center; border-top: 1px solid #1E1E1E; }
+    .footer .logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .footer p { font-size: 12px; color: #444; line-height: 1.7; }
+
+    @media (max-width: 480px) {
+      .stat-row { flex-direction: column; }
+      .price-block { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav">
+      <span class="nav-logo">Entre_Steph</span>
+      <span class="nav-tag">$15 Guide</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Instant Digital Download</div>
+    <h1>The <span class="red">1-Hour</span><br>Content<br><span class="gold">Machine</span></h1>
+    <p class="hero-sub">
+      Create <strong>30+ days of content in one sitting</strong> using AI and Canva — so you can stay consistent without spending every spare minute making content.
+    </p>
+    <div class="price-hero">
+      <span class="sup">$</span>
+      <span class="amount">15</span>
+    </div>
+    <p class="price-note">One-time &nbsp;&bull;&nbsp; Instant access &nbsp;&bull;&nbsp; No subscription</p>
+    <div class="cta-stack">
+      <a href="https://buy.stripe.com/5kQeVd8dd4wIb9T4zgfQI06" class="btn-primary">Get Instant Access &rarr;</a>
+      <span class="cta-note">PDF guide delivered immediately after purchase</span>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- FOR WHO -->
+  <section class="section">
+    <p class="section-label">This Is For You If</p>
+    <h2>You want to show up consistently<br>without burning <span class="gold">out.</span></h2>
+    <div class="for-list">
+      <div class="for-item">You're posting inconsistently because creating content every day feels like a second job</div>
+      <div class="for-item">You stare at a blank screen trying to come up with something new to say</div>
+      <div class="for-item">You know you should be batching your content but you don't have a clear system</div>
+      <div class="for-item">You want to use AI to speed things up but you're not sure exactly how</div>
+      <div class="for-item">You're tired of spending hours on content that barely gets seen</div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- WHAT'S INSIDE -->
+  <section class="section">
+    <p class="section-label">What's Inside</p>
+    <h2>10 steps. One system.<br><span class="gold">A whole month handled.</span></h2>
+
+    <div class="inside-list">
+      <div class="inside-item">
+        <span class="inside-num">01</span>
+        <div class="inside-text"><h3>Start With What's Already Working</h3><p>How to repost top content, download from Instagram and TikTok, and create variations without starting from scratch.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">02</span>
+        <div class="inside-text"><h3>Multiply Your Hooks</h3><p>One video body, 10+ hooks — record them in one sitting and get dozens of posts out of a single script. Includes 30 proven hook starters to give to AI.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">03</span>
+        <div class="inside-text"><h3>Test Before You Batch</h3><p>How to run trial reels the right way — what to change, how many to post, and when to actually call a winner.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">04</span>
+        <div class="inside-text"><h3>Build Your Content Pillars</h3><p>Define your 4–5 core topics, create reusable caption templates, and build a Google Doc library so you never write from scratch again.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">05</span>
+        <div class="inside-text"><h3>Bulk Create With Canva + AI</h3><p>The exact workflow to generate 30+ videos in one session using Canva's Bulk Create feature and an AI-generated hook spreadsheet.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">06</span>
+        <div class="inside-text"><h3>Schedule Your Content</h3><p>Find the scheduling rhythm that fits your life — including how to use ManyChat keyword triggers on Stories for automated lead capture.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">07</span>
+        <div class="inside-text"><h3>Automate Lead Capture With ManyChat</h3><p>Set up keyword comment triggers so every post collects leads automatically — no manual follow-up required.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">08</span>
+        <div class="inside-text"><h3>Build Your B-Roll Library</h3><p>How to batch film once and reuse clips all month — plus free stock options and AI-generated b-roll tools so you never have to be on camera if you don't want to.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">09</span>
+        <div class="inside-text"><h3>AI Prompt Templates to Steal</h3><p>Ready-to-use prompts for hooks, captions (with SEO), reel scripts, carousels, ManyChat DMs, and repurposing winners — plus a caption structure template.</p></div>
+      </div>
+      <div class="inside-item">
+        <span class="inside-num">10</span>
+        <div class="inside-text"><h3>Track Three Numbers. That's It.</h3><p>The only analytics that matter — watch time, shares, and follows — and a simple weekly routine that takes 10 minutes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- STATS -->
+  <section class="section" style="padding-top: 44px; padding-bottom: 44px;">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">days of content from one session</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10</div>
+        <div class="stat-label">step system, beginner friendly</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$15</div>
+        <div class="stat-label">one-time, instant access</div>
+      </div>
+    </div>
+    <div class="cta-stack">
+      <a href="https://buy.stripe.com/5kQeVd8dd4wIb9T4zgfQI06" class="btn-primary">Get the Guide for $15 &rarr;</a>
+      <span class="cta-note">PDF delivered instantly after purchase</span>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- PRICE BLOCK -->
+  <section class="section">
+    <div class="price-block">
+      <p class="price-label">One-Time Purchase</p>
+      <div class="price-big">
+        <span class="sup">$</span>
+        <span class="amount">15</span>
+      </div>
+      <p class="price-per">Instant access &nbsp;&bull;&nbsp; No subscription &nbsp;&bull;&nbsp; Keep it forever</p>
+      <ul class="price-includes">
+        <li>14-page PDF guide</li>
+        <li>10-step batching system</li>
+        <li>30 proven hook starters</li>
+        <li>AI prompt templates to copy-paste</li>
+        <li>Caption structure template</li>
+        <li>Viral reel script format</li>
+        <li>Beginner-friendly, no fluff</li>
+      </ul>
+      <div class="cta-stack">
+        <a href="https://buy.stripe.com/5kQeVd8dd4wIb9T4zgfQI06" class="btn-primary">Get Instant Access &rarr;</a>
+        <span class="cta-note">PDF guide delivered immediately after purchase</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="logo">Entre_Steph</p>
+    <p>Questions? Email <a href="mailto:steph@entresteph.com" style="color:var(--gold);text-decoration:none;">steph@entresteph.com</a></p>
+    <br/>
+    <p>&copy; 2026 Entre_Steph. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
